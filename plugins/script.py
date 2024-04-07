@@ -2,6 +2,32 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 class Translation(object):
 
+
+
+        USTART_TEXT = """
+👋 Hᴇʏ {} 
+
+ⵊ Aᴍ Tᴇʟᴇɢʀᴀᴍ URL Uᴘʟᴏᴀᴅᴇʀ Bᴏᴛ.
+
+**ᵀᴼ ᴬᶜᶜᴱˢˢ ᴹᴱ ᶜᴼᴺᵀᴬᶜᵀ ᴬᴰᴹᴵᴺ ᴬᵀ @Shreeshiva323**
+
+Usᴇ ᴾᴸᴬᴺ ᴮᵁᵀᵀᴼᴺ ᴛᴏ ᴋɴᴏᴡ ʜᴏᴡ ᴛᴏ ᴜsᴇ ᴍᴇ
+
+"""
+
+
+        PLAN_TEXT = """
+👋 Hᴇʏ {} 
+
+ⵊ Aᴍ Tᴇʟᴇɢʀᴀᴍ URL Uᴘʟᴏᴀᴅᴇʀ Bᴏᴛ.
+
+**upi : hegadesbharg08-1@okhdfcbank**
+
+**ᴾᴬʸ ⁵⁰ᴿˢ ᴬᴺᴰ ˢᴱᴺᵀ ˢᶜᴿᴿᴱᴺˢᴴᴼᵀ ᴬᵀ @Shreeshiva323**
+
+"""
+
+
     START_TEXT = """
 👋 Hᴇʏ {} 
 
@@ -64,6 +90,16 @@ sʜᴏᴡ ᴛʜᴜᴍʙɴᴀɪʟ
     START_BUTTONS = InlineKeyboardMarkup(
         [[
         InlineKeyboardButton('⚙️ sᴇᴛᴛɪɴɢs', callback_data='OpenSettings')
+        ],[
+        InlineKeyboardButton('❔ ʜᴇʟᴘ', callback_data='help'),
+        InlineKeyboardButton('👨‍🚒 ᴀʙᴏᴜᴛ', callback_data='about')
+        ],[
+        InlineKeyboardButton('⛔️ ᴄʟᴏsᴇ', callback_data='close')
+        ]]
+    )
+    USTART_BUTTONS = InlineKeyboardMarkup(
+        [[
+        InlineKeyboardButton('ᴾᴸᴬᴺ', callback_data='plan')
         ],[
         InlineKeyboardButton('❔ ʜᴇʟᴘ', callback_data='help'),
         InlineKeyboardButton('👨‍🚒 ᴀʙᴏᴜᴛ', callback_data='about')
