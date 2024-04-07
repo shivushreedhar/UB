@@ -9,6 +9,36 @@ logging.basicConfig(
     level=logging.INFO
 )
 
+user_data = {}
+
+
+AUTHORIZED_CHATS = environ.get("AUTHORIZED_CHATS", "")
+if len(AUTHORIZED_CHATS) != 0:
+    aid = AUTHORIZED_CHATS.split()
+    for id_ in aid:
+        user_data[int(id_.strip())] = {"is_auth": True}
+
+
+SUDO_USERS = environ.get("SUDO_USERS", "")
+if len(SUDO_USERS) != 0:
+    aid = SUDO_USERS.split()
+    for id_ in aid:
+        user_data[int(id_.strip())] = {"is_sudo": True}
+
+
+OWNER_ID = environ.get("OWNER_ID", "")
+if len(OWNER_ID) == 0:
+    log_error("OWNER_ID variable is missing! Exiting now")
+    exit(1)
+else:
+    OWNER_ID = int(OWNER_ID)
+
+
+config_dict = {'SUDO_USERS':SUDO_USERS,
+               'AUTHORIZED_CHATS':AUTHORIZED_CHAT,
+               'OWNER_ID':OWNER_ID}
+
+
 class Config(object):
     
     BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
