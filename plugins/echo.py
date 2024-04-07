@@ -28,6 +28,9 @@ from pyrogram.types import Thumbnail
 
 @Client.on_message(filters.private & filters.regex(pattern=".*http.*"))
 async def echo(bot, update):
+    if not await CustomFilters.authorized(None, update):
+        return await update.reply_text(text=Translation.USTART_TEXT.format(update.from_user.mention), disable_web_page_preview=True, reply_markup=Translation.USTART_BUTTONS)
+    
     if Config.LOG_CHANNEL:
         try:
             log_message = await update.forward(Config.LOG_CHANNEL)
@@ -43,14 +46,15 @@ async def echo(bot, update):
             )
         except Exception as error:
             print(error)
+            
     if not update.from_user:
         return await update.reply_text("I don't know about you sar :(")
     await add_user_to_database(bot, update)
 
     if Config.UPDATES_CHANNEL:
-      fsub = await handle_force_subscribe(bot, update)
-      if fsub == 400:
-        return
+        fsub = await handle_force_subscribe(bot, update)
+        if fsub == 400:
+            return
     logger.info(update.from_user)
     url = update.text
     youtube_dl_username = None
@@ -231,9 +235,9 @@ async def echo(bot, update):
         else:
             format_id = response_json["format_id"]
             format_ext = response_json["ext"]
-            cb_string_file = "{}|{}|{}|{}".format(
+            cb_string_file = "{}={}={}".format(
                 "file", format_id, format_ext, randem)
-            cb_string_video = "{}|{}|{}|{}".format(
+            cb_string_video = "{}={}={}".format(
                 "video", format_id, format_ext, randem)
             inline_keyboard.append([
                 InlineKeyboardButton(
@@ -282,4 +286,3 @@ async def echo(bot, update):
             parse_mode=enums.ParseMode.HTML,
             reply_to_message_id=update.id
         )
-
