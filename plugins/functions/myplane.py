@@ -2,15 +2,15 @@ import time
 from pyrogram import Client, filters
 from pyrogram.types import (
     InlineKeyboardButton, InlineKeyboardMarkup, ForceReply)
-from plugins.database import find_one, used_limit
-from plugins.database import daily as daily_
+from plugins.database.database import find_one, used_limit
+from plugins.database.database import daily as daily_
 import datetime
 from datetime import timedelta, date, datetime
 from datetime import date as date_
-from plugins.progress import humanbytes
-from plugins.database import daily as daily_
-from plugins.date import check_expi
-from plugins.database import uploadlimit, usertype
+from helper.progress import humanbytes
+from plugins.database.database import daily as daily_
+from helper.date import check_expi
+from plugins.database.database import uploadlimit, usertype
 
 
 @Client.on_message(filters.private & filters.command(["myplan"]))
