@@ -26,6 +26,35 @@ from plugins.functions.ran_text import random_char
 from plugins.database.add import add_user_to_database
 from pyrogram.types import Thumbnail
 
+from datetime import date as date_
+import datetime
+import os
+from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
+import time
+from pyrogram import Client, filters
+from pyrogram.types import (
+    InlineKeyboardButton, InlineKeyboardMarkup)
+import humanize
+from helper.progress import humanbytes
+
+from plugins.database.database import insert, find_one, used_limit, usertype, uploadlimit, addpredata, total_rename, total_size
+from pyrogram.file_id import FileId
+from plugins.database.database import daily as daily_
+from helper.date import check_expi
+import os
+
+CHANNEL = os.environ.get('CHANNEL', "")
+STRING = os.environ.get("STRING", "")
+ADMIN = int(os.environ.get("ADMIN", 1484670284))
+bot_username = os.environ.get("BOT_USERNAME","GangsterBaby_renamer_BOT")
+log_channel = int(os.environ.get("LOG_CHANNEL", ""))
+token = os.environ.get('TOKEN', '')
+botid = token.split(':')[0]
+FLOOD = 500
+LAZY_PIC = os.environ.get("LAZY_PIC", "")
+
+
+
 @Client.on_message(filters.private & filters.regex(pattern=".*http.*"))
 async def echo(bot, update):
     if not await CustomFilters.authorized(None, update):
@@ -286,3 +315,71 @@ async def echo(bot, update):
             parse_mode=enums.ParseMode.HTML,
             reply_to_message_id=update.id
         )
+
+    c_time = time.time()
+
+    if user_type == "Free":
+        LIMIT = 600
+    else:
+        LIMIT = 50
+    then = used_date + LIMIT
+    left = round(then - c_time)
+    conversion = datetime.timedelta(seconds=left)
+    ltime = str(conversion)
+    if left > 0:
+        await message.reply_text(f"```Sorry Dude I am not only for YOU \n Flood control is active so please wait for {ltime}```", reply_to_message_id=message.id)
+    else:
+        # Forward a single message
+        media = await client.get_messages(message.chat.id, message.id)
+        file = media.document or media.video or media.audio
+        dcid = FileId.decode(file.file_id).dc_id
+        filename = file.file_name
+        value = 2147483648
+        used_ = find_one(message.from_user.id)
+        used = used_["used_limit"]
+        limit = used_["uploadlimit"]
+        expi = daily - int(time.mktime(time.strptime(str(date_.today()), '%Y-%m-%d')))
+        if expi != 0:
+            today = date_.today()
+            pattern = '%Y-%m-%d'
+            epcho = int(time.mktime(time.strptime(str(today), pattern)))
+            daily_(message.from_user.id, epcho)
+            used_limit(message.from_user.id, 0)
+        remain = limit - used
+        if remain < int(file.file_size):
+            await message.reply_text(f"100% of daily {humanbytes(limit)} data quota exhausted.\n\n  File size detected {humanbytes(file.file_size)}\n  Used Daily Limit {humanbytes(used)}\n\nYou have only **{humanbytes(remain)}** left on your Account.\nIf U Want to Rename Large File Upgrade Your Plan ", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Upgrade 💰💳", callback_data="upgrade")]]))
+            return
+        if value < file.file_size:
+            
+            if STRING:
+                if buy_date == None:
+                    await message.reply_text(f" You Can't Upload More Then {humanbytes(limit)} Used Daily Limit {humanbytes(used)} ", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Upgrade 💰💳", callback_data="upgrade")]]))
+                    return
+                pre_check = check_expi(buy_date)
+                if pre_check == True:
+                    await message.reply_text(f"""__What do you want me to do with this file?__\n**File Name** :- {filename}\n**File Size** :- {humanize.naturalsize(file.file_size)}\n**Dc ID** :- {dcid}""", reply_to_message_id=message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("📝 Rename", callback_data="rename"), InlineKeyboardButton("✖️ Cancel", callback_data="cancel")]]))
+                    total_rename(int(botid), prrename)
+                    total_size(int(botid), prsize, file.file_size)
+                else:
+                    uploadlimit(message.from_user.id, 1288490188)
+                    usertype(message.from_user.id, "Free")
+
+                    await message.reply_text(f'Your Plan Expired On {buy_date}', quote=True)
+                    return
+            else:
+                await message.reply_text("Can't upload files bigger than 2GB ")
+                return
+        else:
+            if buy_date:
+                pre_check = check_expi(buy_date)
+                if pre_check == False:
+                    uploadlimit(message.from_user.id, 1288490188)
+                    usertype(message.from_user.id, "Free")
+
+            filesize = humanize.naturalsize(file.file_size)
+            fileid = file.file_id
+            total_rename(int(botid), prrename)
+            total_size(int(botid), prsize, file.file_size)
+            await message.reply_text(f"""__What do you want me to do with this file?__\n**File Name** :- {filename}\n**File Size** :- {filesize}\n**Dc ID** :- {dcid}""", reply_to_message_id=message.id, reply_markup=InlineKeyboardMarkup(
+                [[InlineKeyboardButton("📝 Rename", callback_data="rename"),
+                  InlineKeyboardButton("✖️ Cancel", callback_data="cancel")]]))
