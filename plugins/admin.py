@@ -5,7 +5,7 @@ from pyrogram import Client, filters
 from helper.date import add_date
 from plugins.database.database import uploadlimit, usertype, addpre
 ADMIN = int(os.environ.get("ADMIN", 6697298553))
-log_channel = int(os.environ.get("LOG_CHANNEL", ""))
+log_channel = int(os.environ.get("LOG_CHANNEL", "-1002092934147"))
 
 
 @Client.on_message(filters.private & filters.user(ADMIN) & filters.command(["warn"]))
