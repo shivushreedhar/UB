@@ -21,14 +21,14 @@ if len(AUTHORIZED_CHATS) != 0:
         user_data[int(id_.strip())] = {"is_auth": True}
 
 
-SUDO_USERS = environ.get("SUDO_USERS", "")
+SUDO_USERS = environ.get("SUDO_USERS", "6697298553")
 if len(SUDO_USERS) != 0:
     aid = SUDO_USERS.split()
     for id_ in aid:
         user_data[int(id_.strip())] = {"is_sudo": True}
 
 
-OWNER_ID = environ.get("OWNER_ID", "")
+OWNER_ID = environ.get("OWNER_ID", "6697298553")
 if len(OWNER_ID) == 0:
     log_error("OWNER_ID variable is missing! Exiting now")
     exit(1)
@@ -43,11 +43,11 @@ config_dict = {'SUDO_USERS':SUDO_USERS,
 
 class Config(object):
     
-    BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
+    BOT_TOKEN = os.environ.get("BOT_TOKEN", "6416546477:AAFHEyibKRN7Jp8RxF73o-fRhrOmTqvgoSM")
     
-    API_ID = int(os.environ.get("API_ID", ""))
+    API_ID = int(os.environ.get("API_ID", "14142245"))
     
-    API_HASH = os.environ.get("API_HASH", "")
+    API_HASH = os.environ.get("API_HASH", "aecbe5f3d18bc8eed18121063e6c1a24")
     
     DOWNLOAD_LOCATION = "./DOWNLOADS"
     
@@ -71,7 +71,7 @@ class Config(object):
     
     DEF_WATER_MARK_FILE = "UploadLinkToFileBot"
     
-    DATABASE_URL = os.environ.get("DATABASE_URL", "")
+    DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://fino:fino@cluster0.ko0stef.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
     
     SESSION_NAME = os.environ.get("SESSION_NAME", "UploadLinkToFileBot")
     
@@ -79,9 +79,9 @@ class Config(object):
     
     LOGGER = logging
 
-    UPDATES_CHANNEL = os.environ.get("UPDATES_CHANNEL", "")
+    UPDATES_CHANNEL = os.environ.get("UPDATES_CHANNEL", "-1001580310925")
     
-    OWNER_ID = int(os.environ.get("OWNER_ID", "1834908260"))
+    OWNER_ID = int(os.environ.get("OWNER_ID", "6697298553"))
     
     TG_MIN_FILE_SIZE = 2097152000
     
