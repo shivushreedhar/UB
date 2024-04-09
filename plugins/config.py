@@ -43,11 +43,11 @@ config_dict = {'SUDO_USERS':SUDO_USERS,
 
 class Config(object):
     
-    BOT_TOKEN = os.environ.get("BOT_TOKEN", "6416546477:AAFHEyibKRN7Jp8RxF73o-fRhrOmTqvgoSM")
+    BOT_TOKEN = os.environ.get("BOT_TOKEN", "6788872246:AAGtIALCc1c5_zsxERbGrnDWuBT3ZqJzASc")
     
-    API_ID = int(os.environ.get("API_ID", "14142245"))
+    API_ID = int(os.environ.get("API_ID", "16073849"))
     
-    API_HASH = os.environ.get("API_HASH", "aecbe5f3d18bc8eed18121063e6c1a24")
+    API_HASH = os.environ.get("API_HASH", "e84dd69cd0504b8b45b2fd6a4e19068d")
     
     DOWNLOAD_LOCATION = "./DOWNLOADS"
     
@@ -71,19 +71,19 @@ class Config(object):
     
     DEF_WATER_MARK_FILE = "UploadLinkToFileBot"
     
-    DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://fino:fino@cluster0.ko0stef.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+    DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://viratfilter:virat123@cluster0.0ug4o4o.mongodb.net/?retryWrites=true&w=majority")
     
     SESSION_NAME = os.environ.get("SESSION_NAME", "UploadLinkToFileBot")
     
-    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1002092934147"))
+    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1002070783301"))
     
     LOGGER = logging
 
-    UPDATES_CHANNEL = os.environ.get("UPDATES_CHANNEL", "-1001580310925")
+    UPDATES_CHANNEL = os.environ.get("UPDATES_CHANNEL", "-1001728957833")
     
-    OWNER_ID = int(os.environ.get("OWNER_ID", "6697298553"))
+    OWNER_ID = int(os.environ.get("OWNER_ID", "5536032493"))
     
     TG_MIN_FILE_SIZE = 2097152000
     
-    BOT_USERNAME = os.environ.get("BOT_USERNAME", "@TomenxLinkBot")
+    BOT_USERNAME = os.environ.get("BOT_USERNAME", "@Bshegdeuploader_bot")
                                   
