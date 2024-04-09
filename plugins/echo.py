@@ -44,12 +44,12 @@ from plugins.database.database import daily as daily_
 from helper.date import check_expi
 import os
 
-CHANNEL = os.environ.get('CHANNEL', "-1001580310925")
+CHANNEL = os.environ.get('CHANNEL', "-1001728957833")
 STRING = os.environ.get("STRING", "")
-ADMIN = int(os.environ.get("ADMIN", 6697298553))
-bot_username = os.environ.get("BOT_USERNAME","@TomenxLinkBot")
-log_channel = int(os.environ.get("LOG_CHANNEL", "-1002092934147"))
-token = os.environ.get('TOKEN', '6416546477:AAFHEyibKRN7Jp8RxF73o-fRhrOmTqvgoSM')
+ADMIN = int(os.environ.get("ADMIN", 5536032493))
+bot_username = os.environ.get("BOT_USERNAME","@Bshegdeuploader_bot")
+log_channel = int(os.environ.get("LOG_CHANNEL", "-1002070783301"))
+token = os.environ.get('TOKEN', '6788872246:AAGtIALCc1c5_zsxERbGrnDWuBT3ZqJzASc')
 botid = token.split(':')[0]
 FLOOD = 500
 LAZY_PIC = os.environ.get("LAZY_PIC", "")
