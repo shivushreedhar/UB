@@ -1,6 +1,8 @@
 import os
+from os import environ, getcwd
 
-import logging
+import logging 
+from logging import error as log_error
 
 logging.basicConfig(
     format='%(name)s - %(levelname)s - %(message)s',
@@ -35,7 +37,7 @@ else:
 
 
 config_dict = {'SUDO_USERS':SUDO_USERS,
-               'AUTHORIZED_CHATS':AUTHORIZED_CHAT,
+               'AUTHORIZED_CHATS':AUTHORIZED_CHATS,
                'OWNER_ID':OWNER_ID}
 
 

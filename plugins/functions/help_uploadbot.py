@@ -6,6 +6,10 @@ logger = logging.getLogger(__name__)
 
 import os
 import requests
+from datetime import time
+from helper.progress import humanbytes
+
+
 
 def DetectFileSize(url):
     r = requests.get(url, allow_redirects=True, stream=True)

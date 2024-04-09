@@ -36,8 +36,6 @@ from plugins.settings.settings import *
 
 @Client.on_message(filters.photo)
 async def save_photo(bot, update):
-    if not await CustomFilters.authorized(None, update):
-        return await update.reply_text(text=Translation.USTART_TEXT.format(update.from_user.mention), disable_web_page_preview=True, reply_markup=Translation.USTART_BUTTONS)
     if not update.from_user:
         return await update.reply_text("I don't know about you sar :(")
     await add_user_to_database(bot, update)
@@ -63,8 +61,6 @@ async def save_photo(bot, update):
 
 @Client.on_message(filters.command(["delthumb"]))
 async def delete_thumbnail(bot, update):
-    if not await CustomFilters.authorized(None, update):
-        return await update.reply_text(text=Translation.USTART_TEXT.format(update.from_user.mention), disable_web_page_preview=True, reply_markup=Translation.USTART_BUTTONS)
     if not update.from_user:
         return await update.reply_text("I don't know about you sar :(")
     await add_user_to_database(bot, update)
@@ -91,8 +87,6 @@ async def delete_thumbnail(bot, update):
 
 @Client.on_message(filters.command("showthumb") )
 async def viewthumbnail(bot, update):
-    if not await CustomFilters.authorized(None, update):
-        return await update.reply_text(text=Translation.USTART_TEXT.format(update.from_user.mention), disable_web_page_preview=True, reply_markup=Translation.USTART_BUTTONS)
     if not update.from_user:
         return await update.reply_text("I don't know about you sar :(")
     await add_user_to_database(bot, update) 
