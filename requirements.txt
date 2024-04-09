@@ -11,6 +11,7 @@ olefile
 motor
 pymongo
 dnspython
+jinja2
 psutil
 loggers
 filetype
